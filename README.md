@@ -1,7 +1,21 @@
 # My Configurations Files
 
 
-* Neovim
-* Tmux
+* **Neovim**
+ 
+ ![](https://raw.githubusercontent.com/qipoy/dotfiles/master/ss-neovim.png)
 
-This Configurations its very greate for Ubuntu.
+
+<br>
+
+
+* ** Tmux**
+
+ ![](https://raw.githubusercontent.com/qipoy/dotfiles/master/ss-tmux.png)
+
+
+
+<br>
+### **This Configurations its very great for Ubuntu.**
+
+
