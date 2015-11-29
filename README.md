@@ -9,7 +9,7 @@
 <br>
 
 
-* ** Tmux**
+* **Tmux**
 
  ![](https://raw.githubusercontent.com/qipoy/dotfiles/master/ss-tmux.png)
 
