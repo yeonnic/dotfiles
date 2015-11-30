@@ -78,7 +78,7 @@ call plug#end()
 
 set number	" set/viewing number in vim
 set nobackup	" No Need backup for confirmation *.swp. its bullshit!
-set nowritebackup	" its same!!!! *.swp. its bullshit!
+set nowritebackup " its same!!!! *.swp. its bullshit!
 set noswapfile     
 set history=50
 set ruler	" show the cursor position all the time
