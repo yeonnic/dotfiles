@@ -78,11 +78,11 @@ call plug#end()
 
 set number	" set/viewing number in vim
 set nobackup	" No Need backup for confirmation *.swp. its bullshit!
-set nowritebackup		" its same!!!! *.swp. its bullshit!
+set nowritebackup	" its same!!!! *.swp. its bullshit!
 set noswapfile     
 set history=50
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
+set ruler	" show the cursor position all the time
+set showcmd	" display incomplete commands
 set incsearch	" do incremental searching
 set autowrite	" Automatically :write before running commands
 set hlsearch	" hinghlight searh
@@ -118,11 +118,10 @@ if has('nvim')
 set showmode	" always show what mode we're currently editing in
 set nowrap	" don't wrap lines
 set tabstop=4	" a tab is four spaces
-set nosmarttab	" Require this for editing tab in neovim!
+set nosmarttab " Require this for editing tab in neovim!
 set tags=tags
 set softtabstop=4	" when hitting <BS>, pretend like a tab is removed, even if spaces
 retab 2
-"set expandtab	" expand tabs by default (overloadable per file type later)
 
 
 set shiftwidth=4	" number of spaces to use for autoindenting
@@ -139,7 +138,7 @@ set timeout timeoutlen=200 ttimeoutlen=100
 
 "set visualbell    " don't beep
 "set noerrorbells  " don't beep
-set autowrite		"Save on buffer switch
+set autowrite	"Save on buffer switch
 set mouse=a
 
 "Fast Save using short key.
