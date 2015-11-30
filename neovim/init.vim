@@ -1,9 +1,8 @@
-"		 _ __   ___  _____   _(_)_ __ ___     __ _(_)_ __   ___  _   _ 
-"		| '_ \ / _ \/ _ \ \ / / | '_ ` _ \   / _` | | '_ \ / _ \| | | |
-"		| | | |  __/ (_) \ V /| | | | | | | | (_| | | |_) | (_) | |_| |
-"		|_| |_|\___|\___/ \_/ |_|_| |_| |_|  \__, |_| .__/ \___/ \__, |
-"																						|_| |_|          |___/																																																																															|_| |_|          |___/ 
-
+"		 _ __   ___  _____   _(_)_ __ ___   
+"		| '_ \ / _ \/ _ \ \ / / | '_ ` _ \ 
+"		| | | |  __/ (_) \ V /| | | | | | |
+"		|_| |_|\___|\___/ \_/ |_|_| |_| |_|
+"																																																																																																		|_| |_|          |___/ 
 
 "######################################################################
 " VIM PLUGIN MANAGER USING VIM-PLUG
@@ -77,16 +76,16 @@ call plug#end()
 "######################################################################
 
 
-set number																	" set/viewing number in vim
-set nobackup																" No Need backup for confirmation *.swp. its bullshit!
-set nowritebackup														" its same!!!! *.swp. its bullshit!
-set noswapfile       
+set number												" set/viewing number in vim
+set nobackup											" No Need backup for confirmation *.swp. its bullshit!
+set nowritebackup									" its same!!!! *.swp. its bullshit!
+set noswapfile     
 set history=50
-set ruler																		" show the cursor position all the time
-set showcmd																	" display incomplete commands
-set incsearch																" do incremental searching
-set autowrite																" Automatically :write before running commands
-set hlsearch																"hinghlight searh
+set ruler													" show the cursor position all the time
+set showcmd												" display incomplete commands
+set incsearch											" do incremental searching
+set autowrite											" Automatically :write before running commands
+set hlsearch											" hinghlight searh
 
 
 " UTF 8, Please!
@@ -116,31 +115,31 @@ if has('nvim')
   endif
 
 
-set showmode											" always show what mode we're currently editing in
-set nowrap												" don't wrap lines
-set tabstop=4											" a tab is four spaces
-set nosmarttab											" Require this for editing tab in neovim!
+set showmode						" always show what mode we're currently editing in
+set nowrap							" don't wrap lines
+set tabstop=4						" a tab is four spaces
+set nosmarttab					" Require this for editing tab in neovim!
 set tags=tags
-set softtabstop=4										" when hitting <BS>, pretend like a tab is removed, even if spaces
+set softtabstop=4				" when hitting <BS>, pretend like a tab is removed, even if spaces
 retab 2
-"set expandtab											" expand tabs by default (overloadable per file type later)
+"set expandtab					" expand tabs by default (overloadable per file type later)
 
 
-set shiftwidth=4										" number of spaces to use for autoindenting
-"set shiftround											" use multiple of shiftwidth when indenting with '<' and '>'
-"set backspace=indent,eol,start							" allow backspacing over everything in insert mode
-set autoindent											" always set autoindenting on
-set copyindent											" copy the previous indentation on autoindenting
-set number												" always show line numbers
-set ignorecase											" ignore case when searching
-set smartcase											" ignore case if search pattern is all lowercase,
+set shiftwidth=4				" number of spaces to use for autoindenting
+set autoindent					" always set autoindenting on
+set copyindent					" copy the previous indentation on autoindenting
+set number							" always show line numbers
+set ignorecase					" ignore case when searching
+set smartcase						" ignore case if search pattern is all lowercase,
+set shiftround					" use multiple of shiftwidth when indenting with '<' and '>'
 
+set backspace=indent,eol,start		" allow backspacing over everything in insert mode
 
 set timeout timeoutlen=200 ttimeoutlen=100
 
-"set visualbell           " don't beep
-"set noerrorbells         " don't beep
-set autowrite  "Save on buffer switch
+"set visualbell         " don't beep
+"set noerrorbells       " don't beep
+set autowrite						"Save on buffer switch
 set mouse=a
 
 "Fast Save using short key.
