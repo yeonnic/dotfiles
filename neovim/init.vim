@@ -4,11 +4,9 @@
 "		|_| |_|\___|\___/ \_/ |_|_| |_| |_|
 "																																																																																																		|_| |_|          |___/ 
 
-"######################################################################
-" VIM PLUGIN MANAGER USING VIM-PLUG
-"######################################################################
-
-
+"###################################################################### 
+" Vim-Plug for plugin managemen
+"###################################################################### 
 call plug#begin('~/.config/nvim/plugged')
 
 "Vim Nerdtree
@@ -16,6 +14,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'} 
+
+"neomake
+Plug 'benekastah/neomake'
 
 "Solarized Theme
 Plug 'altercation/vim-colors-solarized'
@@ -53,6 +54,9 @@ Plug 'scrooloose/nerdcommenter'
 "vim Pairs
 Plug 'jiangmiao/auto-pairs'
 
+"syntastic
+Plug 'scrooloose/syntastic'
+
 "vim RAILS
 Plug 'tpope/vim-rails'
 
@@ -65,8 +69,11 @@ Plug 'honza/vim-snippets'
 "Vim Ruby
 Plug 'vim-ruby/vim-ruby'
 
-call plug#end()
+"Vim Prel
+Plug 'vim-perl/vim-perl'
+Plug 'c9s/perlomni.vim'
 
+call plug#end()
 
 
 
@@ -75,17 +82,19 @@ call plug#end()
 " VIM Configuration 
 "######################################################################
 
-
+syntax on
+filetype plugin indent on
+nmap <silent> <leader>x :!google-chrome-stable %<CR> 
 set number	" set/viewing number in vim
-set nobackup	" No Need backup for confirmation *.swp. its bullshit!
+set nobackup																																																																																																																																" No Need backup for confirmation *.swp. its bullshit!
 set nowritebackup " its same!!!! *.swp. its bullshit!
 set noswapfile     
 set history=50
-set ruler	" show the cursor position all the time
+set ruler																																																																																																																																" show the cursor position all the time
 set showcmd	" display incomplete commands
-set incsearch	" do incremental searching
-set autowrite	" Automatically :write before running commands
-set hlsearch	" hinghlight searh
+set incsearch																																																																																																																																" do incremental searching
+set autowrite																																																																																																																																" Automatically :write before running commands
+set hlsearch																																																																																																																																" hinghlight searh
 
 
 " UTF 8, Please!
@@ -93,7 +102,7 @@ set termencoding=utf-8
 set encoding=utf-8
 
 "Fast way gor normal mode using jk  
-imap jk <ESC>																 
+imap jk <ESC>																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																 
 
 
 
@@ -111,8 +120,8 @@ hi Normal ctermbg=none
 
 "For configuration
 if has('nvim')
-    runtime! plugin/python_setup.vim
-  endif
+	runtime! plugin/python_setup.vim
+endif
 
 
 set showmode " always show what mode we're currently editing in
@@ -122,7 +131,7 @@ set nosmarttab " Require this for editing tab in neovim!
 set tags=tags
 set softtabstop=4 " when hitting <BS>, pretend like a tab is removed, even if spaces
 retab 2
-
+set cursorline
 
 set shiftwidth=4 " number of spaces to use for autoindenting
 set autoindent " always set autoindenting on
@@ -184,9 +193,19 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 :nnoremap <C-l> <C-w>l
 
 
+"Clipboard Setting copy-paste
+set clipboard+=unnamedplus
 
+function! ClipboardYank()
+	call system('xclip -i -selection clipboard', @@)
+endfunction
+function! ClipboardPaste()
+	let @@ = system('xclip -o -selection clipboard')
+endfunction
 
-
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
 
 "######################################################################
 " Copy , Paste, and Select All Configuration 
@@ -196,28 +215,25 @@ autocmd BufWinEnter,WinEnter term://* startinsert
 nmap <C-a> <esc>ggVG<CR>
 imap <C-a> <esc>ggVG<CR>
 
-"Copy Paste Configuration
-vmap <C-c> "+y
-vmap <C-x> "+x
-vmap <C-v> "+gP
+"Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-nmap <C-c> "+y
-nmap <C-x> "+x
-nmap <C-v> "+gP
-
-imap <C-c> <ESC>"+y
-imap <C-x> <ESC>"+x
-imap <C-v> <ESC>"+gP
-
-
-
-
-
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_aggregate_errors = 1
 "######################################################################
 " Themes and Colorscheme 
 "######################################################################
 
-se t_Co=16
+"se t_Co=16
 set background=dark
 colorscheme gruvbox 
 let g:solarized_termcolors=256
@@ -250,13 +266,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
+let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_powerline_fonts = 1
 
 set laststatus=2
 "let g:bufferline_echo = 0
 
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 
@@ -278,9 +295,9 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 "Buffer Configuration
- \l       : list buffers
- \b \f \g : go back/forward/last-used
- \1 \2 \3 : go to buffer 1/2/3 etc
+			\l       : list buffers
+			\b \f \g : go back/forward/last-used
+			\1 \2 \3 : go to buffer 1/2/3 etc
 
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
@@ -299,10 +316,6 @@ nnoremap <Leader>0 :10b<CR>
 
 " It's useful to show the buffer number in the status line.
 set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-
-
-
 
 "######################################################################
 " Ruby On Rails Convigurations 
@@ -331,14 +344,14 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " Better indent support for PHP by making it possible to indent HTML sections
 " as well.
 if exists("b:did_indent")
-  finish
+	finish
 endif
 
 
 " This script pulls in the default indent/php.vim with the :runtime command
 " which could re-run this script recursively unless we catch that:
 if exists('s:doing_indent_inits')
-  finish
+	finish
 endif
 let s:doing_indent_inits = 1
 runtime! indent/html.vim
@@ -348,26 +361,29 @@ unlet s:doing_indent_inits
 
 
 function! GetPhpHtmlIndent(lnum)
-  if exists('*HtmlIndent')
-    let html_ind = HtmlIndent()
-  else
-    let html_ind = HtmlIndentGet(a:lnum)
-  endif
-  let php_ind = GetPhpIndent()
-  " priority one for php indent script
-  if php_ind > -1
-    return php_ind
-  endif
-  
-  if html_ind > -1
-    if getline(a:num) =~ "^<?" && (0< searchpair('<?', '', '?>', 'nWb')
-          \ || 0 < searchpair('<?', '', '?>', 'nW'))
-      return -1
-    endif
-    return html_ind
-  endif
-  return -1
+	if exists('*HtmlIndent')
+		let html_ind = HtmlIndent()
+	else
+		let html_ind = HtmlIndentGet(a:lnum)
+	endif
+	let php_ind = GetPhpIndent()
+	" priority one for php indent script
+	if php_ind > -1
+		return php_ind
+	endif
+
+	if html_ind > -1
+		if getline(a:num) =~ "^<?" && (0< searchpair('<?', '', '?>', 'nWb')
+					\ || 0 < searchpair('<?', '', '?>', 'nW'))
+			return -1
+		endif
+		return html_ind
+	endif
+	return -1
 endfunction
 setlocal indentexpr=GetPhpHtmlIndent(v:lnum)
 setlocal indentkeys+=<>>
+
+let $PATH=substitute(system("echo \$PATH"), "\r\*\n", "", "g")
+
 
